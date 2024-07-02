@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <CustomBox component="header">
       {/*  Box text  */}
-      {/* <BoxText component="section">
+      <BoxText component="section">
         <Typography
           variant="h2"
           component="h1"
@@ -114,7 +114,7 @@ const Header = () => {
             explore
           </Button>
         </Box>
-      </BoxText> */}
+      </BoxText>
 
       <Box
         sx={(theme) => ({
@@ -129,14 +129,14 @@ const Header = () => {
           },
         })}
       >
-        {/* <img
+        <img
           src={headerImg}
           alt="headerImg"
           style={{
             width: "100%",
             marginBottom: -15,
           }}
-        /> */}
+        />
 
       <MDBCarousel showControls style={{position: 'absolute', top: 0, justifyContent: 'center', alignSelf: 'center'}} showIndicators dark fade>
       <MDBCarouselItem

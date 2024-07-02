@@ -1,109 +1,300 @@
-import React, { useState } from 'react';
-import GetInTouch from '../components/GetInTouch';
-import GetStarted from '../components/GetStarted';
-import FullScreenCarousel from '../components/FullScreenCarousel';
-import { Popover, Button, IconButton, TextField, Typography, Box } from '@mui/material';
-import EmailIcon from '@mui/icons-material/Email';
-import AlgeriaMapWithPopover from '../components/AlgeriaMap';
-import Certificates from '../components/Certificates';
+import React, { useState } from "react";
+import GetInTouch from "../components/GetInTouch";
+import GetStarted from "../components/GetStarted";
+import FullScreenCarousel from "../components/FullScreenCarousel";
+import {
+  Popover,
+  Button,
+  IconButton,
+  TextField,
+  Typography,
+  Box,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
+import AlgeriaMapWithPopover from "../components/AlgeriaMap";
+import Certificates from "../components/Certificates";
+import { useDarkMode } from "../context/DarkModeContext";
+import colors from "../constants/colors";
+import VideoSection from "../components/VideoSection";
+import AboutUsSection from "../components/AboutUsSection";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import LanguageIcon from "@mui/icons-material/Language";
+import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [langAnchorEl, setLangAnchorEl] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    selectedOption: "Contact",
+    message: "",
+  });
+
+  const { darkMode, toggleDarkMode } = useDarkMode(); // Assuming toggleDarkMode is provided by DarkModeContext
+  const currentColors = darkMode ? colors.dark : colors.light;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleLangClick = (event) => {
+    setLangAnchorEl(event.currentTarget);
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
+    setLangAnchorEl(null);
+  };
+
+  const handleInputChange = (prop) => (event) => {
+    setFormData({ ...formData, [prop]: event.target.value });
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const langOpen = Boolean(langAnchorEl);
+  const id = open ? "simple-popover" : undefined;
+  const langId = langOpen ? "lang-popover" : undefined;
 
   const slides = [
     {
-      image: 'https://ceerisarmouk.com/wp-content/uploads/2019/11/photo-1516937941344-00b4e0337589-1.jpeg',
-      alt: 'CEERI SARMOUK',
-      label: 'CEERI SARMOUK',
-      text: "Cabinet d’Etudes environnementales et Risques Industriels."
+      image:
+        "https://ceerisarmouk.com/wp-content/uploads/2019/11/photo-1516937941344-00b4e0337589-1.jpeg",
+      alt: "CEERI SARMOUK",
+      label: "CEERI SARMOUK",
+      text: "Cabinet d’Etudes environnementales et Risques Industriels.",
     },
     {
-      image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(35).jpg',
-      alt: 'Second slide',
-      label: 'Second slide label',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      image: "https://mdbootstrap.com/img/Photos/Slides/img%20(35).jpg",
+      alt: "Second slide",
+      label: "Second slide label",
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
     {
-      image: 'https://mdbootstrap.com/img/Photos/Slides/img%20(40).jpg',
-      alt: 'Third slide',
-      label: 'Third slide label',
-      text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-    }
+      image:
+        "https://ceerisarmouk.com/wp-content/uploads/2019/11/photo-1516937941344-00b4e0337589-2.jpeg",
+      alt: "Third slide",
+      label: "Third slide label",
+      text: "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+    },
   ];
 
   return (
-    <>
+    <Box sx={{ backgroundColor: currentColors.background, color: currentColors.textPrimary }}>
       <FullScreenCarousel slides={slides} />
       <Certificates />
+      <AboutUsSection />
       <GetStarted />
-      <GetInTouch />
-      <div className='justify-content-center align-items-center m-3 border-1 d-flex'>
+
+      <div className="justify-content-center align-items-center m-3 border-1 d-flex">
         <AlgeriaMapWithPopover />
       </div>
+
+      <div className="justify-content-center overflow-hidden align-items-center h-100">
+        <VideoSection />
+      </div>
+
+      <GetInTouch />
+
+      {/* Dark Mode Toggle Button */}
+      <IconButton
+        onClick={toggleDarkMode}
+        style={{
+          position: "fixed",
+          bottom: "90px",
+          left: "20px",
+          backgroundColor: currentColors.primary,
+          color: currentColors.white,
+          width: "60px",
+          height: "60px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "24px",
+        }}
+      >
+        <Brightness4Icon />
+      </IconButton>
+
+      {/* Language Selection Button */}
+      <IconButton
+        onClick={handleLangClick}
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          left: "20px",
+          backgroundColor: currentColors.primary,
+          color: currentColors.white,
+          width: "60px",
+          height: "60px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "24px",
+        }}
+      >
+        <LanguageIcon />
+      </IconButton>
+
+      {/* Contact Button */}
       <IconButton
         onClick={handleClick}
         style={{
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-          backgroundColor: '#007bff',
-          color: 'white',
-          width: '60px',
-          height: '60px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: '24px'
+          position: "fixed",
+          bottom: "160px",
+          right: "20px",
+          backgroundColor: currentColors.primary,
+          color: currentColors.white,
+          width: "60px",
+          height: "60px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "24px",
         }}
       >
-        <EmailIcon />
+        <ContactSupportIcon />
       </IconButton>
 
+      {/* Language Selection Popover */}
+      <Popover
+        id={langId}
+        open={langOpen}
+        anchorEl={langAnchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+      >
+        <Box
+          sx={{
+            p: 2,
+            width: 200,
+            backgroundColor: currentColors.background,
+            color: currentColors.text,
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            Language
+          </Typography>
+          <Select
+            labelId="select-lang-label"
+            id="select-lang"
+            value={formData.selectedOption}
+            onChange={handleInputChange("selectedOption")}
+            fullWidth
+            variant="outlined"
+            sx={{
+              mt: 2,
+            }}
+          >
+            <MenuItem value="English">English</MenuItem>
+            <MenuItem value="French">French</MenuItem>
+          </Select>
+        </Box>
+      </Popover>
+
+      {/* Contact Popover */}
       <Popover
         id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
+          vertical: "top",
+          horizontal: "center",
         }}
         transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
+          vertical: "bottom",
+          horizontal: "center",
         }}
       >
-        <Box sx={{ p: 2, width: 300 }}>
-          <Typography variant="h6" gutterBottom>Contact Us</Typography>
+        <Box
+          sx={{
+            p: 2,
+            width: 300,
+            backgroundColor: currentColors.background,
+            color: currentColors.text,
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            {formData.selectedOption
+              ? formData.selectedOption.toUpperCase()
+              : "Contact Us"}
+          </Typography>
           <TextField
             fullWidth
             margin="normal"
             label="Name"
             variant="outlined"
+            value={formData.name}
+            onChange={handleInputChange("name")}
+            InputLabelProps={{ style: { color: currentColors.text } }}
+            InputProps={{
+              style: { color: currentColors.text },
+              sx: {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: currentColors.text,
+                },
+              },
+            }}
           />
           <TextField
             fullWidth
             margin="normal"
             label="Phone"
             variant="outlined"
+            value={formData.phone}
+            onChange={handleInputChange("phone")}
+            InputLabelProps={{ style: { color: currentColors.text } }}
+            InputProps={{
+              style: { color: currentColors.text },
+              sx: {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: currentColors.text,
+                },
+              },
+            }}
           />
           <TextField
             fullWidth
             margin="normal"
             label="Email"
             variant="outlined"
+            value={formData.email}
+            onChange={handleInputChange("email")}
+            InputLabelProps={{ style: { color: currentColors.text } }}
+            InputProps={{
+              style: { color: currentColors.text },
+              sx: {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: currentColors.text,
+                },
+              },
+            }}
           />
+          <Select
+            labelId="select-label"
+            id="select"
+            value={formData.selectedOption}
+            onChange={handleInputChange("selectedOption")}
+            fullWidth
+            variant="outlined"
+            sx={{
+              mt: 2,
+            }}
+          >
+            <MenuItem value="Reclamation">Reclamation</MenuItem>
+            <MenuItem value="Contact">Contact</MenuItem>
+          </Select>
           <TextField
             fullWidth
             margin="normal"
@@ -111,18 +302,43 @@ const Home = () => {
             variant="outlined"
             multiline
             rows={4}
+            value={formData.message}
+            onChange={handleInputChange("message")}
+            InputLabelProps={{ style: { color: currentColors.text } }}
+            InputProps={{
+              style: { color: currentColors.text },
+              sx: {
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: currentColors.text,
+                },
+              },
+            }}
           />
+
           <Button
             variant="contained"
-            color="primary"
-            style={{ marginTop: 16 }}
+            fullWidth
+            type="submit"
+            size="medium"
+            sx={{
+              fontSize: "0.9rem",
+              textTransform: "capitalize",
+              py: 2,
+              mt: 3,
+              mb: 2,
+              borderRadius: 0,
+              backgroundColor: "#14192d",
+              "&:hover": {
+                backgroundColor: "#1e2a5a",
+              },
+            }}
           >
-            Submit
+            ENVOYER
           </Button>
         </Box>
       </Popover>
-    </>
+    </Box>
   );
-}
+};
 
 export default Home;

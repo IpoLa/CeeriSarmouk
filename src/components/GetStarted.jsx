@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Grid, styled, Typography } from "@mui/material";
 import Title from "./Title";
-// img
 import imgDetail from "../assets/pexels-alex-staudinger-1732414.jpg";
 import imgDetail2 from "../assets/pexels-pixabay-271816.jpg";
 
@@ -36,28 +35,20 @@ const GetStarted = () => {
             px: 4,
           }}
         >
-          <Title
-            text={"We make it easy for tenants and landlords"}
-            textAlign={"start"}
-          />
+          <Title text={"À Propos de Ceeri Sarmouk"} textAlign={"start"} />
           <CustomTypography>
-            Listing are updated continuously so you
-            <br />
-            won't miss out on homes that just hit
-            <br />
-            market until you find your perfect home.
+            CEERI (Cabinet d'Études Environnementaux et Risques Industriels)
+            est une entreprise spécialisée dans les études environnementales,
+            les évaluations de risques industriels, et les diagnostics de mise
+            en conformité réglementaire d'installations. Fondée en 2000, CEERI
+            s'engage à offrir des solutions durables pour les défis
+            environnementaux rencontrés par les industries et les entreprises.
           </CustomTypography>
         </Box>
       </CustomGridItem>
 
       <Grid item xs={12} sm={4} md={6}>
-        <img
-          src={imgDetail}
-          alt=""
-          style={{
-            width: "100%",
-          }}
-        />
+        <img src={imgDetail} alt="CEERI Sarmouk" style={{ width: "100%" }} />
       </Grid>
 
       <Grid
@@ -69,13 +60,7 @@ const GetStarted = () => {
           order: { xs: 4, sm: 4, md: 3 },
         }}
       >
-        <img
-          src={imgDetail2}
-          alt=""
-          style={{
-            width: "100%",
-          }}
-        />
+        <img src={imgDetail2} alt="CEERI Sarmouk" style={{ width: "100%" }} />
       </Grid>
 
       <CustomGridItem
@@ -93,11 +78,17 @@ const GetStarted = () => {
             px: 4,
           }}
         >
-          <Title text={"Match with the best agent"} textAlign={"start"} />
+          <Title
+            text={"Services de CEERI Sarmouk"}
+            textAlign={"start"}
+          />
           <CustomTypography>
-            Our verified partner Agents are local experts who
-            <br />
-            earn an average of 4.8/5 stars from buyers and sellers.
+            Les services proposés par CEERI Sarmouk incluent:
+            <ul>
+              <li>Études environnementales</li>
+              <li>Évaluations des risques industriels</li>
+              <li>Diagnostics de conformité réglementaire</li>
+            </ul>
           </CustomTypography>
         </Box>
       </CustomGridItem>

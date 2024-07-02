@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Map } from "react-algeria-map";
 import { Popover, Typography } from "@mui/material";
 import willaya from "../constants/wilaya";
+import Title from "./Title";
 
 const AlgeriaMapWithPopover = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -22,7 +23,8 @@ const AlgeriaMapWithPopover = () => {
   const open = Boolean(anchorEl !== null ? true : false);
 
   return (
-    <>
+    <div className="col d-block justify-content-center align-content-center text-center">
+    <Title text={"Notre projets"} textAlign={"center"} />
       <Map
         color="#55E6C1"
         HoverColor="#58B19F"
@@ -50,7 +52,7 @@ const AlgeriaMapWithPopover = () => {
           {selectedWilaya && `You clicked on ${selectedWilaya}`}
         </Typography>
       </Popover>
-    </>
+    </div>
   );
 };
 

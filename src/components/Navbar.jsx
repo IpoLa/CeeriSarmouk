@@ -35,18 +35,34 @@ const ListMenu = styled(List)(({ theme }) => ({
 }));
 
 const itemList = [
+  // {
+  //   text: "Home",
+  //   to: "/",
+  // },
   {
-    text: "Home",
-    to: "/",
-  },
-  {
-    text: "About",
+    text: "A propos",
     to: "/about",
   },
   {
-    text: "Contact",
-    to: "/contact",
+    text: "Nos services",
+    to: "/services",
   },
+  {
+    text: "Quelques refs",
+    to: "/references",
+  },
+  {
+    text: "Actualités",
+    to: "/news",
+  },
+  {
+    text: "Galerie",
+    to: "/gallery",
+  },
+  // {
+  //   text: "FR",
+  //   to: "/contact",
+  // },
 ];
 
 const Navbar = () => {
@@ -79,12 +95,13 @@ const Navbar = () => {
           backgroundColor: scrolled
             ? `${currentColors.primary}CC`
             : currentColors.primary,
-          backdropFilter: scrolled ? "blur(10px)" : "none",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
           transition:
             "background-color 0.3s ease, backdrop-filter 0.3s ease, min-height 0.3s ease, transform 0.3s ease, border 0.5s ease",
-          minHeight: scrolled ? 48 : 64, // Change minHeight based on scroll state
+          minHeight: scrolled ? 45 : 64, // Change minHeight based on scroll state
+          justifyItems: scrolled ? "center" : "flex-start",
           backgroundImage: scrolled
-            ? "linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))"
+            ? "linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))"
             : "none",
           transform: scrolled ? "scale(0.90)" : "scale(1)", // Apply scaleX based on scroll state
           borderRadius: scrolled ? "20px" : 0,
@@ -102,34 +119,37 @@ const Navbar = () => {
               height: "60px",
             }}
           />
-          <IconButton color="inherit">
-            <Switch checked={darkMode} onChange={toggleDarkMode} />
-          </IconButton>
-          <Box sx={{ display: { xs: "block", sm: "none" } }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <ListMenu>
+              {itemList.map((item) => {
+                const { text } = item;
+                return (
+                  <ListItem key={text}>
+                    <ListItemButton
+                      component={Link}
+                      to={item.to}
+                      sx={{
+                        color: currentColors.white,
+                        width: '140px',
+                        "&:hover": {
+                          backgroundColor: "transparent",
+                          color: currentColors.secondary,
+                        },
+                      }}
+                    >
+                      <ListItemText primary={text} />
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+            </ListMenu>
+          </Box>
+          <Box
+            sx={{ display: { xs: "block", sm: "none" } }}
+            sm={{ display: "none" }}
+          >
             <DrawerItem />
           </Box>
-          <ListMenu>
-            {itemList.map((item) => {
-              const { text } = item;
-              return (
-                <ListItem key={text}>
-                  <ListItemButton
-                    component={Link}
-                    to={item.to}
-                    sx={{
-                      color: currentColors.white,
-                      "&:hover": {
-                        backgroundColor: "transparent",
-                        color: currentColors.secondary,
-                      },
-                    }}
-                  >
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-          </ListMenu>
         </StyledToolbar>
       </AppBar>
     </>

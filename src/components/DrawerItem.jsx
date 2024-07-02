@@ -9,30 +9,47 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
+import { useDarkMode } from '../context/DarkModeContext';
 import colors from '../constants/colors';
 
 const itemList = [
   {
-    text: "Home",
-    to: "/",
-  },
-  {
-    text: "About",
+    text: "A propos",
     to: "/about",
   },
   {
-    text: "Contact",
+    text: "Nos services",
+    to: "/services",
+  },
+  {
+    text: "Quelques refs",
+    to: "/references",
+  },
+  {
+    text: "Actualités",
+    to: "/news",
+  },
+  {
+    text: "Galerie",
+    to: "/gallery",
+  },
+  {
+    text: "FR",
     to: "/contact",
   },
 ];
 
 const DrawerItem = () => {
   const [open, setOpen] = useState(false);
+  const { darkMode } = useDarkMode();
 
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
+
+  const currentColors = darkMode ? colors.dark : colors.light;
 
   return (
     <>
@@ -50,7 +67,7 @@ const DrawerItem = () => {
         open={open}
         onClose={handleDrawerToggle}
         PaperProps={{
-          sx: { width: '100%', height: '100%' },
+          sx: { width: '100%', height: '100%', backgroundColor: currentColors.primary },
         }}
       >
         <Box
@@ -60,10 +77,17 @@ const DrawerItem = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: colors.light.primary,
           }}
         >
-          <Typography variant="h6" component="h2" sx={{ mb: 2, color: colors.light.white }}>
+          <IconButton
+            color="inherit"
+            aria-label="close drawer"
+            onClick={handleDrawerToggle}
+            sx={{ position: 'absolute', top: 16, right: 16 }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <Typography variant="h6" component="h2" sx={{ mb: 2, color: currentColors.white }}>
             Ceeri Sarmouk
           </Typography>
           <List>
@@ -71,7 +95,7 @@ const DrawerItem = () => {
               const { text, to } = item;
               return (
                 <ListItem key={text} button component={Link} to={to} onClick={handleDrawerToggle}>
-                  <ListItemText primary={text} sx={{ textAlign: 'center', color: colors.light.white }} />
+                  <ListItemText primary={text} sx={{ textAlign: 'center', color: currentColors.white }} />
                 </ListItem>
               );
             })}
