@@ -67,7 +67,7 @@ const DrawerItem = () => {
         open={open}
         onClose={handleDrawerToggle}
         PaperProps={{
-          sx: { width: '100%', height: '100%', backgroundColor: currentColors.primary },
+          sx: { width: '90%', height: '100%', backgroundColor: currentColors.primary },
         }}
       >
         <Box

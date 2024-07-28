@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Route and Routes from react-router-dom
 import { DarkModeProvider } from './context/DarkModeContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -7,19 +7,20 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import Footer from './components/Footer/Footer';
-
-// Importing ldrs for loading indicator
+import AdminNavbar from './components/AdminNavbar'; // Import AdminNavbar component
+import AdminSidebar from './components/AdminSidebar'; // Import AdminSidebar component
 import { bouncy } from 'ldrs';
-bouncy.register(); // Register the loading indicator component
+import Certificates from './pages/AdminCertificates';
+import Slides from './pages/AdminSlides';
+bouncy.register();
 
-const App = () => {
+export default function App() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulating a delay to show the loading indicator
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 3000); 
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -33,8 +34,22 @@ const App = () => {
           </div>
         ) : (
           <>
-            <Navbar />
+            {/* Conditional rendering of Navbar and AdminSidebar based on route */}
             <Routes>
+              <Route element={<Navbar />} /> {/* Use a Route for Navbar */}
+              <Route path="/admin/*">
+                {({ location }) => {
+                  console.log('Current path:', location.pathname); // Log the current path
+                  return (
+                    <>
+                      <AdminNavbar />
+                      <AdminSidebar />
+                    </>
+                  );
+                }}
+              </Route>
+              <Route path="/admin/certificates" element={<Certificates />} />
+              <Route path="/admin/slides" element={<Slides />} />
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
@@ -46,5 +61,3 @@ const App = () => {
     </DarkModeProvider>
   );
 };
-
-export default App;

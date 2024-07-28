@@ -1,10 +1,13 @@
 // FullScreenCarousel.js
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 import "../styles/FullScreenCarousel.css";
 
 const FullScreenCarousel = ({ slides }) => {
+  useEffect(() => {
+    console.log(slides)
+  })
   return (
     <MDBCarousel showControls showIndicators dark fade>
       {slides.map((slide, index) => (
