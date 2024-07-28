@@ -23,6 +23,8 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import LanguageIcon from "@mui/icons-material/Language";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import Navbar from '../components/Navbar.jsx'
+import AccordionComponent from "../components/Accordion.jsx";
+import Footer from "../components/Footer/Footer.jsx";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -100,14 +102,14 @@ const Home = () => {
           <div className="justify-content-center align-items-center m-3 border-1 d-flex">
             <AlgeriaMapWithPopover />
           </div>
+          <AccordionComponent />
 
-          <div className="justify-content-center overflow-hidden align-items-center h-100">
+          <div className="justify-content-center mt-2 overflow-hidden align-items-center h-100">
             <VideoSection />
             <div style={{justifyContent: 'center', display: 'flex'}}>
               <TabsComponent />
             </div>
           </div>
-
 
           {/* Dark Mode Toggle Button */}
           <IconButton
@@ -168,6 +170,8 @@ const Home = () => {
           >
             <ContactSupportIcon />
           </IconButton>
+
+          <Footer />
 
           {/* Language Selection Popover */}
           <Popover

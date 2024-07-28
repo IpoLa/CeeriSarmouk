@@ -14,6 +14,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import GroupIcon from "@mui/icons-material/Group";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import "../styles/AdminSidebar.css";
 
 const AdminSidebar = () => {
@@ -71,6 +72,11 @@ const AdminSidebar = () => {
       path: "/admin/gallerie",
       icon: <WidgetsIcon color={"warning"} />,
       text: "Gallerie",
+    },
+    {
+      path: "/admin/faqs",
+      icon: <LiveHelpIcon color={"warning"} />,
+      text: "FAQs",
     },
     {
       path: "/notifications",

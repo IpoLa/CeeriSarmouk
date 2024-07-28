@@ -12,6 +12,7 @@ import AdminSidebar from './components/AdminSidebar'; // Import AdminSidebar com
 import { bouncy } from 'ldrs';
 import Certificates from './pages/AdminCertificates';
 import Slides from './pages/AdminSlides';
+import Faqs from './pages/AdminFAQs';
 bouncy.register();
 
 export default function App() {
@@ -50,11 +51,12 @@ export default function App() {
               </Route>
               <Route path="/admin/certificates" element={<Certificates />} />
               <Route path="/admin/slides" element={<Slides />} />
+              <Route path="/admin/faqs" element={<Faqs />} />
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
-            <Footer />
+            
           </>
         )}
       </Router>
