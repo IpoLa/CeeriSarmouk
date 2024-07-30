@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Tabs, Tab, Box, Typography } from '@mui/material';
+import { Tabs, Tab, Box, Typography, Grow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
@@ -21,16 +21,7 @@ const useStyles = makeStyles({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    transition: 'transform 0.5s ease',
     boxSizing: 'border-box',
-  },
-  enterFromRight: {
-    transform: 'translateX(0)',
-    transition: 'transform 0.5s ease',
-  },
-  enterFromLeft: {
-    transform: 'translateX(-100%)',
-    transition: 'transform 0.5s ease',
   },
   contentImage: {
     maxWidth: 300,
@@ -66,7 +57,7 @@ const TabsComponent = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: { xs: 1500, md: 1200, sm: 480 }, justifyContent: 'center',  bgcolor: 'background.paper' }}>
+    <Box sx={{ maxWidth: { xs: 1500, md: 1200, sm: 480 }, justifyContent: 'center', bgcolor: 'background.paper' }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -93,18 +84,17 @@ const TabsComponent = () => {
           key={index}
           value={value}
           index={index}
-          className={`${classes.tabPanel} px-4 ${
-            value === index ? classes.enterFromRight : classes.enterFromLeft
-          }`}
         >
-          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <img
-              src={tab.contentImage}
-              alt={`Tab ${index + 1}`}
-              className={classes.contentImage}
-            />
-            <Typography>{tab.content}</Typography>
-          </div>
+          <Grow in={value === index} timeout={500}>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+              <img
+                src={tab.contentImage}
+                alt={`Tab ${index + 1}`}
+                className={classes.contentImage}
+              />
+              <Typography>{tab.content}</Typography>
+            </div>
+          </Grow>
         </TabPanel>
       ))}
     </Box>

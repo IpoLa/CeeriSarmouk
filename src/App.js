@@ -13,6 +13,7 @@ import { bouncy } from 'ldrs';
 import Certificates from './pages/AdminCertificates';
 import Slides from './pages/AdminSlides';
 import Faqs from './pages/AdminFAQs';
+import Gallery from './pages/Gallery';
 bouncy.register();
 
 export default function App() {
@@ -53,6 +54,7 @@ export default function App() {
               <Route path="/admin/slides" element={<Slides />} />
               <Route path="/admin/faqs" element={<Faqs />} />
               <Route path="/" element={<Home />} />
+              <Route path="/gallery" element={<Gallery />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>

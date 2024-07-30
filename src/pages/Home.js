@@ -25,6 +25,7 @@ import ContactSupportIcon from "@mui/icons-material/ContactSupport";
 import Navbar from '../components/Navbar.jsx'
 import AccordionComponent from "../components/Accordion.jsx";
 import Footer from "../components/Footer/Footer.jsx";
+import GallerieShort from "../components/GalleryShort.jsx";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -103,7 +104,7 @@ const Home = () => {
             <AlgeriaMapWithPopover />
           </div>
           <AccordionComponent />
-
+          <GallerieShort />
           <div className="justify-content-center mt-2 overflow-hidden align-items-center h-100">
             <VideoSection />
             <div style={{justifyContent: 'center', display: 'flex'}}>

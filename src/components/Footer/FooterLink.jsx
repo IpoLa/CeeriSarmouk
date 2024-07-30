@@ -11,10 +11,10 @@ const FooterLink = ({ text }) => {
       fontSize: '0.9rem',
       fontWeight: '400',
       textDecoration: 'none',
-      color: '#414141',
+      color: 'lightgray',
       textTransform: 'capitalize',
       "&:hover": {
-        color: '#1c2859',
+        color: 'white',
       }
     }}
     >

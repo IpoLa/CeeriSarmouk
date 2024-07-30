@@ -1,6 +1,6 @@
 import React from 'react'
 import Content from '../components/Content';
-import Gallery from '../components/Gallery';
+import Gallery from './Gallery';
 
 const About = () => {
   return (
