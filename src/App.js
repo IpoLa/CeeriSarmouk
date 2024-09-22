@@ -14,6 +14,7 @@ import Certificates from './pages/AdminCertificates';
 import Slides from './pages/AdminSlides';
 import Faqs from './pages/AdminFAQs';
 import Gallery from './pages/Gallery';
+import ProjectDetail from './pages/ProjectDetails';
 bouncy.register();
 
 export default function App() {
@@ -57,6 +58,7 @@ export default function App() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/project-details/:id" element={<ProjectDetail />} />
             </Routes>
             
           </>

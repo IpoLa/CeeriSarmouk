@@ -22,10 +22,11 @@ import AboutUsSection from "../components/AboutUsSection";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import LanguageIcon from "@mui/icons-material/Language";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
-import Navbar from '../components/Navbar.jsx'
+import Navbar from "../components/Navbar.jsx";
 import AccordionComponent from "../components/Accordion.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import GallerieShort from "../components/GalleryShort.jsx";
+import ProjectOne from "../components/ProjectsCarousel.jsx";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -47,9 +48,9 @@ const Home = () => {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const response = await fetch('https://ceerisarmouk.com/getSlides.php');
+        const response = await fetch("https://ceerisarmouk.com/getSlides.php");
         if (!response.ok) {
-          throw new Error('Failed to fetch slides');
+          throw new Error("Failed to fetch slides");
         }
         const data = await response.json();
         setSlides(data);
@@ -86,7 +87,12 @@ const Home = () => {
   const langId = langOpen ? "lang-popover" : undefined;
 
   return (
-    <Box sx={{ backgroundColor: currentColors.background, color: currentColors.textPrimary }}>
+    <Box
+      sx={{
+        backgroundColor: currentColors.background,
+        color: currentColors.textPrimary,
+      }}
+    >
       <Navbar />
       {loading ? (
         <Typography>Loading...</Typography>
@@ -97,20 +103,22 @@ const Home = () => {
           <FullScreenCarousel slides={slides} />
           <Certificates />
           <AboutUsSection />
-            
+
           <GetStarted />
 
           <div className="justify-content-center align-items-center m-3 border-1 d-flex">
             <AlgeriaMapWithPopover />
           </div>
           <AccordionComponent />
-          <GallerieShort />
+          <ProjectOne />
+          {/* <GallerieShort /> */}
           <div className="justify-content-center mt-2 overflow-hidden align-items-center h-100">
             <VideoSection />
-            <div style={{justifyContent: 'center', display: 'flex'}}>
+            <div style={{ justifyContent: "center", display: "flex" }}>
               <TabsComponent />
             </div>
           </div>
+          
 
           {/* Dark Mode Toggle Button */}
           <IconButton
