@@ -77,8 +77,8 @@ jobs:
         # run: ${{ steps.detect-package-manager.outputs.runner }} next build
         run: |
           export NODE_OPTIONS=--openssl-legacy-provider
-          npm install --legacy-peer-deps
-          npm run build
+          CI=false npm install --legacy-peer-deps
+          CI=false npm run build
           git reset --hard
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
