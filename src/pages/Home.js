@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TabsComponent from "../components/Tabs";
+import TabsComponent, { FeaturesSectionDemo } from "../components/Tabs";
 import GetStarted from "../components/GetStarted";
 import FullScreenCarousel from "../components/FullScreenCarousel";
 import {
@@ -27,6 +27,10 @@ import AccordionComponent from "../components/Accordion.jsx";
 import Footer from "../components/Footer/Footer.jsx";
 import GallerieShort from "../components/GalleryShort.jsx";
 import ProjectOne from "../components/ProjectsCarousel.jsx";
+import SuggestedCarousel from "../components/SuggestedCarousel.tsx";
+import { BentoGridDemo } from "../components/Bento.jsx";
+import { HeroScrollDemo } from "../components/HeroScroll.jsx";
+import { StickyScrollRevealDemo } from "../components/StickyScroll.jsx";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -104,22 +108,20 @@ const Home = () => {
           <Certificates />
           <AboutUsSection />
 
-          <GetStarted />
+          {/* <GetStarted /> */}
+          <StickyScrollRevealDemo />
 
           <div className="justify-content-center align-items-center m-3 border-1 d-flex">
             <AlgeriaMapWithPopover />
           </div>
           <AccordionComponent />
-          <ProjectOne />
-          {/* <GallerieShort /> */}
-          <div className="justify-content-center mt-2 overflow-hidden align-items-center h-100">
-            <VideoSection />
-            <div style={{ justifyContent: "center", display: "flex" }}>
-              <TabsComponent />
-            </div>
+          <HeroScrollDemo />
+          <BentoGridDemo />
+          {/* <ProjectOne /> */}
+          <div style={{ justifyContent: "center", position: 'relative', display: "flex" }}>
+            <FeaturesSectionDemo />
           </div>
           
-
           {/* Dark Mode Toggle Button */}
           <IconButton
             onClick={toggleDarkMode}
@@ -179,7 +181,7 @@ const Home = () => {
           >
             <ContactSupportIcon />
           </IconButton>
-
+          
           <Footer />
 
           {/* Language Selection Popover */}
