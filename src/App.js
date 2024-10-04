@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Route and Routes from react-router-dom
-import { DarkModeProvider } from './context/DarkModeContext';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import Footer from './components/Footer/Footer';
-import AdminNavbar from './components/AdminNavbar'; // Import AdminNavbar component
-import AdminSidebar from './components/AdminSidebar'; // Import AdminSidebar component
-import { bouncy } from 'ldrs';
-import Certificates from './pages/AdminCertificates';
-import Slides from './pages/AdminSlides';
-import Faqs from './pages/AdminFAQs';
-import Gallery from './pages/Gallery';
-import ProjectDetail from './pages/ProjectDetails';
+import React, { useState, useEffect } from "react";
+import { HashRouter as Router, Route, Routes } from "react-router-dom"; // Use HashRouter
+import { DarkModeProvider } from "./context/DarkModeContext";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import Footer from "./components/Footer/Footer";
+import AdminNavbar from "./components/AdminNavbar"; // Import AdminNavbar component
+import AdminSidebar from "./components/AdminSidebar"; // Import AdminSidebar component
+import { bouncy } from "ldrs";
+import Certificates from "./pages/AdminCertificates";
+import Slides from "./pages/AdminSlides";
+import Faqs from "./pages/AdminFAQs";
+import Gallery from "./pages/Gallery";
+import ProjectDetail from "./pages/ProjectDetails";
 bouncy.register();
 
 export default function App() {
@@ -31,18 +31,27 @@ export default function App() {
   return (
     <DarkModeProvider>
       <Router>
+        {" "}
+        {/* Use HashRouter instead of BrowserRouter */}
         {isLoading ? (
-          <div style={{ backgroundColor: '#092537', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div
+            style={{
+              backgroundColor: "#092537",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <l-bouncy size="50" speed="1.75" color="#3584e4" />
           </div>
         ) : (
           <>
-            {/* Conditional rendering of Navbar and AdminSidebar based on route */}
             <Routes>
-              <Route element={<Navbar />} /> {/* Use a Route for Navbar */}
+              <Route element={<Navbar />} />
               <Route path="/admin/*">
                 {({ location }) => {
-                  console.log('Current path:', location.pathname); // Log the current path
+                  console.log("Current path:", location.pathname);
                   return (
                     <>
                       <AdminNavbar />
@@ -60,10 +69,9 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/project-details/:id" element={<ProjectDetail />} />
             </Routes>
-            
           </>
         )}
       </Router>
     </DarkModeProvider>
   );
-};
+}
