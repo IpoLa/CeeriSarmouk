@@ -1,36 +1,47 @@
-name: Deploy to GitHub Pages
+name: 🚀 Deploy Sarpi Admin Front
 
 on:
   push:
-    branches:
-      - main  # Deploy when changes are pushed to the main branch
+    branches: [develop]
+  pull_request:
+    branches: [main]
 
 jobs:
-  build-and-deploy:
+  FTP-Deploy-Action:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout code
+      - name: 🚚 Get latest code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
 
-      # Step 2: Set up Node.js environment
-      - name: Set up Node.js
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Step 4: Build the project
-      - name: Build project
-        run: npm run build
-
-      # Step 5: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        id: cache-node-modules
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out  # Directory with the built project (change this if your build output goes to a different folder)
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: 🔨 Install Dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: |
+          export NODE_OPTIONS=--openssl-legacy-provider
+          npm install --legacy-peer-deps
+          npm run build
+          git reset --hard
+      - name: 📂 Sync folders and files to the server
+        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build/
+          server-dir: public_html/
+          dangerous-clean-slate: true
