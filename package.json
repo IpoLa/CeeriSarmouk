@@ -39,7 +39,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "export": "npm run export",
+    "export": "npx next export",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
