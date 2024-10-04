@@ -78,7 +78,6 @@ jobs:
           export NODE_OPTIONS=--openssl-legacy-provider
           CI=false npm install --legacy-peer-deps
           CI=false npm run build
-          npm run export
           git reset --hard
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v3
