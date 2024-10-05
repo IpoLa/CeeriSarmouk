@@ -12,6 +12,8 @@
     "@mui/styles": "^5.16.0",
     "@mui/system": "^5.16.0",
     "@mui/x-charts": "^7.9.0",
+    "@react-three/drei": "^9.114.0",
+    "@react-three/fiber": "^8.17.9",
     "@tabler/icons-react": "^3.19.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -35,6 +37,8 @@
     "react-scripts": "5.0.1",
     "tailwind-merge": "^2.5.3",
     "tailwindcss": "^3.4.13",
+    "three": "^0.169.0",
+    "three-globe": "^2.32.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

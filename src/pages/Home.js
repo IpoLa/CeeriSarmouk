@@ -32,6 +32,7 @@ import { BentoGridDemo } from "../components/Bento.jsx";
 import { HeroScrollDemo } from "../components/HeroScroll.jsx";
 import { StickyScrollRevealDemo } from "../components/StickyScroll.jsx";
 import { FloatingDockDemo } from "../components/FloatingDock.jsx";
+import { GlobeDemo } from "../components/GlobeDemo.jsx";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -119,11 +120,19 @@ const Home = () => {
           </div>
           <AccordionComponent />
           {/* <ProjectOne /> */}
-          <div style={{ justifyContent: "center", position: 'relative', display: "flex" }}>
+          <div
+            style={{
+              justifyContent: "center",
+              position: "relative",
+              display: "flex",
+            }}
+          >
             <FeaturesSectionDemo />
           </div>
-          {/* <FloatingDockDemo /> */}
           
+
+          {/* <FloatingDockDemo /> */}
+
           {/* Dark Mode Toggle Button */}
           <IconButton
             onClick={toggleDarkMode}
@@ -183,7 +192,7 @@ const Home = () => {
           >
             <ContactSupportIcon />
           </IconButton>
-          
+
           <Footer />
 
           {/* Language Selection Popover */}
