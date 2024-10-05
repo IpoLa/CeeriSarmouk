@@ -31,6 +31,7 @@ import SuggestedCarousel from "../components/SuggestedCarousel.tsx";
 import { BentoGridDemo } from "../components/Bento.jsx";
 import { HeroScrollDemo } from "../components/HeroScroll.jsx";
 import { StickyScrollRevealDemo } from "../components/StickyScroll.jsx";
+import { FloatingDockDemo } from "../components/FloatingDock.jsx";
 
 const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -111,16 +112,17 @@ const Home = () => {
           {/* <GetStarted /> */}
           <StickyScrollRevealDemo />
 
+          <HeroScrollDemo />
+          <BentoGridDemo />
           <div className="justify-content-center align-items-center m-3 border-1 d-flex">
             <AlgeriaMapWithPopover />
           </div>
           <AccordionComponent />
-          <HeroScrollDemo />
-          <BentoGridDemo />
           {/* <ProjectOne /> */}
           <div style={{ justifyContent: "center", position: 'relative', display: "flex" }}>
             <FeaturesSectionDemo />
           </div>
+          {/* <FloatingDockDemo /> */}
           
           {/* Dark Mode Toggle Button */}
           <IconButton

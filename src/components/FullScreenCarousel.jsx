@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 import "../styles/FullScreenCarousel.css"; // Custom CSS file
+import { ImagesSlider } from "./ImagesSlider";
 
 const FullScreenCarousel = ({ slides }) => {
   useEffect(() => {
@@ -9,70 +11,30 @@ const FullScreenCarousel = ({ slides }) => {
   });
 
   return (
-    <MDBCarousel
-      showControls
-      showIndicators
-      dark
-      fade
-      className="custom-carousel"
-    >
-      {slides.map((slide, index) => (
-        <MDBCarouselItem
-          className="w-100 d-block"
-          itemId={index + 1}
-          src={slide.image}
-          alt={slide.alt}
-          key={index}
-        >
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "90vh",
-              overflow: "hidden",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <img
-              src={slide.image}
-              alt={slide.alt}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                filter: "blur(3px)",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                backgroundImage:
-                  "linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                bottom: "10%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                color: "white",
-                textAlign: "center",
-              }}
-            >
-              <h3>{slide.label}</h3>
-              <p>{slide.text}</p>
-            </div>
-          </div>
-        </MDBCarouselItem>
-      ))}
-    </MDBCarousel>
+    <ImagesSlider className="h-[40rem]" images={slides}>
+      {/* <motion.div
+        initial={{
+          opacity: 0,
+          y: -80,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.6,
+        }}
+        className="z-50 flex flex-col justify-center items-center"
+      >
+        <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
+          The hero section slideshow <br /> nobody asked for
+        </motion.p>
+        <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
+          <span>Join now →</span>
+          <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
+        </button>
+      </motion.div> */}
+    </ImagesSlider>
   );
 };
 
